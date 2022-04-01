@@ -1,0 +1,2 @@
+Se realizaron las correcciones sobre el metodo borrarArco, ExisteArco, AgregarArco y se mejoro la implementacion del CantArcos al igual que la del metodo obtenerAdyacentes(verticeId) como se explico en la practica.
+
