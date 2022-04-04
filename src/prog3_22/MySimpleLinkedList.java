@@ -1,9 +1,10 @@
 package prog3_22;
 
-public class MySimpleLinkedList<T> {
+import java.util.Iterator;
+
+public class MySimpleLinkedList<T extends Comparable<T>> implements Iterable<T> {
     private Integer size;
     private Node<T> first;
-
 
     public MySimpleLinkedList() {
         this.first = null;
@@ -11,7 +12,6 @@ public class MySimpleLinkedList<T> {
 
 
     }
-
 
     //O(1) -- array O(n) siendo n cantidad de ementos en el array
     public void insertFront(T info) {
@@ -32,7 +32,6 @@ public class MySimpleLinkedList<T> {
         return null;
     }
 
-
     public boolean isEmpty() {
         //return this.size==0;
         return this.first == null;
@@ -45,12 +44,12 @@ public class MySimpleLinkedList<T> {
         }
         else{
             int pos = 1;
-            Node<T> auxNode = this.first;
-             while (pos != index){
+            MyIterator<T> it = this.iterator();
+             while (pos != index && it.hasNext()){
                  pos++;
-                 auxNode = auxNode.getNext();
+                 it.move();
              }
-             return auxNode.getInfo();
+             return it.get();
         }
     }
 
@@ -60,10 +59,10 @@ public class MySimpleLinkedList<T> {
         }
         else{
             int pos = 1;
-            Node<T> auxNode = this.first;
-            while (auxNode.getInfo() != elem){
+            MyIterator<T> it = this.iterator();
+            while (it.get() != elem && it.hasNext()){
                 pos++;
-                auxNode = auxNode.getNext();
+                it.move();
             }
             return pos;
         }
@@ -75,18 +74,35 @@ public class MySimpleLinkedList<T> {
         return this.size;
     }
 
+    public void insertIndex(int index, T info ){
+        if (this.size > index){
+            Node<T> nuevo = new Node<T>(info,null);
+            Node<T> current = this.first;
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+            nuevo.setNext(current.getNext());
+            current.setNext(nuevo);
+            this.size++;
+        }
+
+    }
+
     @Override
     public String toString() {
-        String lista = "lista : ";
-        if (!this.isEmpty()){
-            Node<T> auxNode = this.first;
-            while (auxNode.getNext() != null) {
-
-                lista+=auxNode.getInfo();
-                auxNode = auxNode.getNext();
-            }
+        MyIterator<T> it = this.iterator();
+        String valor = "";
+        while (it.hasNext()){
+            valor+= " | "+ it.next();
         }
-        return lista;
+        valor += "";
+        return valor + " |";
     }
+
+    @Override
+    public MyIterator<T> iterator() {
+        return new MyIterator(this.first);
+    }
+
 
 }

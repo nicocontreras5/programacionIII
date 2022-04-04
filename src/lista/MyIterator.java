@@ -16,7 +16,7 @@ public class MyIterator  implements Iterator<Integer> {
 
     // bigO metodo next O(1)
     @Override
-    public Integer next() |||||||||||||{
+    public Integer next(){
         Integer info = this.cursor.getInfo(); //O(1)
         this.cursor = this.cursor.getNext(); // O(1)
 

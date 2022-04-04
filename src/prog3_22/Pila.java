@@ -1,9 +1,9 @@
 package prog3_22;
 
-public class pila<T> {
+public class Pila<T extends Comparable<T>> {
     private MySimpleLinkedList<T> elementos;
 
-    public pila() {
+    public Pila() {
         this.elementos = new MySimpleLinkedList();
     }
 

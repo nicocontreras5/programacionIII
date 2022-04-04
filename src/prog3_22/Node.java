@@ -1,6 +1,6 @@
 package prog3_22;
 
-public class Node<T> {
+public class Node<T extends Comparable<T>> implements Comparable<T> {
 
     private T info;
     private Node<T> next;
@@ -31,4 +31,9 @@ public class Node<T> {
         this.info = info;
     }
 
+
+    @Override
+    public int compareTo(T o) {
+        return this.info.compareTo(o);
+    }
 }

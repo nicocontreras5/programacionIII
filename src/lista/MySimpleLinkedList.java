@@ -44,12 +44,12 @@ public class MySimpleLinkedList implements Iterable<Integer> {
     @Override
     public String toString() {
          MyIterator it = this.iterator();
-         String valor = " [";
+         String valor = " [ ";
         while (it.hasNext()){  //O(n)  n = la cantidad de elementos de la lista.
            valor +=  " " + it.next(); // O(1)
 
         };
-        return valor+= " ] ";
+        return valor+= " ]";
     }
 
     // bigO del metodo exctratFront O(1)
@@ -87,8 +87,6 @@ public class MySimpleLinkedList implements Iterable<Integer> {
         }
         else
             return null;
-
-
 
     }
 
